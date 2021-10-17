@@ -1,0 +1,4 @@
+.vscode
+config.toml
+__pycache__
+.pytest_cache
