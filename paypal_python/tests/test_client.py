@@ -20,3 +20,9 @@ def test_list_plans(paypal_config):
     response = client.list_plans(config['product_id'])
 
     assert response.plans[0].id == config['plan_id']
+
+def test_show_subscription_details(paypal_config):
+    client = PayPalClient(paypal_config)
+    response = client.show_subscription_details(config['TestSubscriber']['subscription_id'])
+
+    assert response.subscriber.email_address == config['TestSubscriber']['email']

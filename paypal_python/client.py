@@ -62,4 +62,6 @@ class PayPalClient:
 
         response = requests.get(url, headers=headers)
 
+        print(response.content)
+
         return SubscriptionDetailsResponse.parse_obj(response.json())

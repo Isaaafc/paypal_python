@@ -9,21 +9,21 @@ class CustomerName(BaseModel):
     full_name: Optional[str]
 
 class Address(BaseModel):
-    address_line_1: str
-    address_line_2: str
-    admin_area_1: str
-    admin_area_2: str
-    postal_code: str
-    country_code: str
+    address_line_1: Optional[str]
+    address_line_2: Optional[str]
+    admin_area_1: Optional[str]
+    admin_area_2: Optional[str]
+    postal_code: Optional[str]
+    country_code: Optional[str]
 
 class ShippingAddress(BaseModel):
-    name: CustomerName
-    address: Address
+    name: Optional[CustomerName]
+    address: Optional[Address]
 
 class Subscriber(BaseModel):
     name: CustomerName
     email_address: str
-    shipping_address: ShippingAddress
+    shipping_address: Optional[ShippingAddress]
 
 class Amount(BaseModel):
     currency_code: str

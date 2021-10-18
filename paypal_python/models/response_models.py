@@ -3,8 +3,7 @@ from datetime import datetime, timedelta
 
 from pydantic import BaseModel
 
-from enums import SubscriptionStatusEnum
-
+from .enums import SubscriptionStatusEnum
 from .common import BillingInfo, Link, Plan, Amount, Subscriber
 
 class AccessTokenResponse(BaseModel):

@@ -1,4 +1,4 @@
-from enums import Enum
+from enum import Enum
 
 class SubscriptionStatusEnum(str, Enum):
     APPROVAL_PENDING = 'APPROVAL_PENDING'
