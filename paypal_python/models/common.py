@@ -68,6 +68,6 @@ class Payment(BaseModel):
 class BillingInfo(BaseModel):
     outstanding_balance: Amount
     cycle_executions: List[CycleExecution]
-    last_payment: Payment
+    last_payment: Optional[Payment]
     next_billing_time: datetime
     failed_payments_count: int

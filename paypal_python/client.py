@@ -1,7 +1,9 @@
+import logging
 from typing import Dict
 from urllib.parse import urljoin, urlencode
 
 from requests.auth import HTTPBasicAuth
+from requests.models import Response
 import requests
 
 from .config import PayPalConfig
@@ -56,12 +58,34 @@ class PayPalClient:
 
         return ListPlansResponse.parse_obj(response.json())
 
-    def show_subscription_details(self, subscription_id: str):
+    def show_subscription_details(self, subscription_id: str) -> SubscriptionDetailsResponse:
         url = urljoin(self.config.base_url, f'/v1/billing/subscriptions/{subscription_id}')
         headers = self.__get_json_headers()
 
         response = requests.get(url, headers=headers)
 
-        print(response.content)
-
         return SubscriptionDetailsResponse.parse_obj(response.json())
+
+    def cancel_subscription(self, subscription_id: str, reason: str) -> Response:
+        url = urljoin(self.config.base_url, f'/v1/billing/subscriptions/{subscription_id}/cancel')
+        headers = self.__get_json_headers()
+        
+        body = {
+            'reason': reason
+        }
+
+        response = requests.post(url, headers=headers, json=body)
+
+        return response
+
+    def activate_subscription(self, subscription_id: str, reason: str) -> Response:
+        url = urljoin(self.config.base_url, f'/v1/billing/subscriptions/{subscription_id}/activate')
+        headers = self.__get_json_headers()
+
+        body = {
+            'reason': reason
+        }
+
+        response = requests.post(url, headers=headers, json=body)
+
+        return response
